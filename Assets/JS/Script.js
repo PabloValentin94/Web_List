@@ -70,7 +70,7 @@ function Reload_List()
         document.getElementById("list").innerHTML += `
             <div class="item">
 
-                <input class="id" type="hidden" value="${(task.id)}">
+                <input class="id" type="hidden" value="${task.id}">
 
                 <input class="status" type="checkbox"${(task.complete) ? " checked" : ""}>
 
@@ -178,8 +178,6 @@ function Modify_Task_Status(id)
 // Events:
 
 window.onload = function() {
-
-    // localStorage.clear();
 
     if(localStorage.getItem("to_do_list") !== null)
     {
