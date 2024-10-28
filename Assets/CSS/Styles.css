@@ -1,10 +1,204 @@
 /* Resources: */
 
+@import url("https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css");
 
+/* Colors: */
+
+*:root {
+
+    --main-color: #023077;
+    --page-color: #FFFFFF;
+    --contrast-color: #000000;
+
+}
 
 /* Styles: */
 
+* {
 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+body {
+
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--page-color);
+    overflow: hidden;
+
+}
+
+body main {
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    background-color: transparent;
+    padding: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-color: var(--main-color) var(--page-color);
+    scroll-behavior: smooth;
+
+}
+
+body main figure {
+
+    min-height: 300px;
+    min-width: 300px;
+    overflow: hidden;
+
+}
+
+body main figure img {
+
+    height: 100%;
+    width: 100%;
+
+}
+
+body main form {
+
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+}
+
+body main form label, body main form input, body main form button {
+
+    font-size: 20px;
+    color: var(--contrast-color);
+    text-align: center;
+
+}
+
+body main form label {
+
+    font-weight: bold;
+    cursor: text;
+
+}
+
+body main form input {
+
+    border: 1px solid var(--contrast-color);
+    outline: none;
+    padding: 5px;
+    cursor: default;
+
+}
+
+body main form input:focus {
+
+    border-color: var(--main-color);
+    cursor: text;
+
+}
+
+body main form button {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid var(--contrast-color);
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+
+}
+
+body main form button:hover {
+
+    background-color: var(--main-color);
+    border-color: transparent;
+    color: var(--page-color);
+
+}
+
+body main #list {
+
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+
+}
+
+body main #list .item {
+
+    height: 50px;
+    width: 495px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--contrast-color);
+    padding: 15px;
+
+}
+
+body main #list .item p, body main #list .item button {
+
+    font-size: 25px;
+    text-align: center;
+
+}
+
+body main #list .item input {
+
+    height: 25px;
+    width: 25px;
+    color-scheme: dark;
+    cursor: pointer;
+    
+}
+
+body main #list .item p {
+
+    width: 250px;
+    max-width: 100%;
+    color: var(--contrast-color);
+    text-align: center;
+    
+}
+
+body main #list .item button {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+    
+}
+
+body main #list .item button:hover {
+
+    color: var(--main-color);
+
+}
 
 /* Responsiveness: */
 
