@@ -118,7 +118,7 @@ function Reload_List()
 
                 <input class="status" type="checkbox"${(task.complete) ? " checked" : ""}>
 
-                <p class="description"> ${task.name} </p>
+                <p class="description"> ${(task.complete) ? task.name.strike() : task.name} </p>
 
                 <button class="removal"> <i class="bx bxs-trash-alt">  </i> </button>
 
@@ -263,9 +263,9 @@ function Modify_Task_Status(id)
 
     tasks[id].complete = !tasks[id].complete;
 
-    // Atualizando o valor do item salvo no Local Storage.
+    // Atualizando a lista de tarefas.
 
-    localStorage.setItem("to_do_list", JSON.stringify(tasks));
+    Reload_List();
 
 }
 
