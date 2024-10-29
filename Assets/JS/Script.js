@@ -28,6 +28,52 @@ var tasks = []; // Array de controle da página.
 
 // Functions:
 
+function Find_Array_Index(id)
+{
+
+    // Convertendo o parâmetro passado nesta função para um número inteiro decimal.
+
+    id = parseInt(id, 10);
+
+    // Variável de controle da estrutura de repetição a seguir.
+
+    let array_index = 0;
+
+    // Verificando se há mais de um item no Array de controle da página.
+
+    if(tasks.length > 1)
+    {
+
+        /*
+
+            O trecho de código abaixo irá analisar o valor da propriedade ID em todos os objetos presentes no Array de 
+            controle da página e, então, retornar o índice pertencente ao objeto dentro do Array que possua o valor de seu 
+            ID igual ao valor do parâmetro passado nesta função.
+
+        */
+
+        for(let i = 0; i < tasks.length; i++)
+        {
+    
+            if(tasks[i].id === id)
+            {
+    
+                array_index = i;
+    
+                break;
+    
+            }
+    
+        }
+        
+    }
+
+    // Retornando o valor da variável de controle da estrutura de repetição acima.
+
+    return array_index;
+
+}
+
 function Define_List_Events()
 {
 
@@ -54,7 +100,7 @@ function Define_List_Events()
 
             // Função que define o estado de uma caixa de seleção (Marcada ou desmarcada.).
 
-            Modify_Task_Status(this.parentElement.querySelector(".id").value);
+            Modify_Task_Status(Find_Array_Index(this.parentElement.querySelector(".id").value));
 
         }
 
@@ -64,7 +110,7 @@ function Define_List_Events()
 
             // Função que edita uma tarefa.
 
-            Edit_Task(this.parentElement.querySelector(".id").value);
+            Edit_Task(Find_Array_Index(this.parentElement.querySelector(".id").value));
 
         }
 
@@ -74,7 +120,7 @@ function Define_List_Events()
 
             // Função que remove uma tarefa.
 
-            Remove_Task(this.parentElement.querySelector(".id").value);
+            Remove_Task(Find_Array_Index(this.parentElement.querySelector(".id").value));
 
         }
 
@@ -181,25 +227,25 @@ function Add_Task(task_description)
 
 }
 
-function Edit_Task(id)
+function Edit_Task(index)
 {
 
     // Salvando o valor atual da tarefa selecionada para que ele possa ser reutilizado, caso o usuário não preencha nada a seguir.
 
-    const old_name = tasks[id].name;
+    const old_name = tasks[index].name;
 
     // Alterando o nome da tarefa selecionada, com base no que o usuário digitou.
 
-    tasks[id].name = prompt("Insert the new name for the selected task:", tasks[id].name);
+    tasks[index].name = prompt("Insert the new name for the selected task:", tasks[index].name);
 
     // Verificando se o usuário realmente preencheu a propriedade com um valor aceitável.
 
-    if(tasks[id].name === null)
+    if(tasks[index].name === null)
     {
 
         // Redefinindo o valor da propriedade.
 
-        tasks[id].name = old_name;
+        tasks[index].name = old_name;
 
     }
 
@@ -214,12 +260,12 @@ function Edit_Task(id)
 
 }
 
-function Remove_Task(id)
+function Remove_Task(index)
 {
 
     // Exibindo uma mensagem de confirmação que pergunta ao usuário se ele realmente deseja excluir a tarefa selecionada.
 
-    if(confirm(`Do you really want to remove the task "${tasks[id].name}"?`))
+    if(confirm(`Do you really want to remove the task "${tasks[index].name}"?`))
     {
 
         // Array de controle da estrutura de repetição a seguir.
@@ -228,21 +274,22 @@ function Remove_Task(id)
 
         /*
 
-            O trecho de código abaixo adiciona todas as tarefas, exceto a que tem o mesmo ID da tarefa selecionada, dentro da 
-            variável acima. O valor dessa variável irá então sobrescrever o valor do Array de controle da página.
+            O trecho de código abaixo adiciona todas as tarefas, exceto a que tem o mesmo índice de Array da tarefa selecionada, 
+            dentro da variável acima. O valor dessa variável irá então sobrescrever o valor do Array de controle da página.
 
         */
 
-        tasks.forEach(task => {
-    
-            if(task.id !== parseInt(id, 10))
+        for(let i = 0; i < tasks.length; i++)
+        {
+
+            if(Find_Array_Index(tasks[i].id) !== index)
             {
     
-                new_list.push(task);
+                new_list.push(tasks[i]);
     
             }
-    
-        });
+
+        }
 
         // Alterando o valor do Array de controle da página.
     
@@ -256,12 +303,12 @@ function Remove_Task(id)
 
 }
 
-function Modify_Task_Status(id)
+function Modify_Task_Status(index)
 {
 
     // Alterando o status de conclusão da tarefa selecionada.
 
-    tasks[id].complete = !tasks[id].complete;
+    tasks[index].complete = !tasks[index].complete;
 
     // Atualizando a lista de tarefas.
 
